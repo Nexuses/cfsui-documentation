@@ -60,7 +60,7 @@ body {
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
+    --muted-foreground: 0 0% 80%;
     --accent: 0 0% 14.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
@@ -91,4 +91,42 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Dark mode fixes for hardcoded background colors */
+.dark .bg-gray-50,
+.dark .bg-gray-100,
+.dark .bg-white,
+.dark .bg-slate-50,
+.dark .bg-slate-100 {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+}
+
+.dark .bg-gray-900,
+.dark .bg-gray-800,
+.dark .bg-slate-900,
+.dark .bg-slate-800,
+.dark .bg-black {
+  background-color: hsl(var(--background));
+  border: 1px solid hsl(var(--border));
+}
+
+.dark .bg-gray-900 code,
+.dark .bg-gray-800 code,
+.dark .bg-slate-900 code,
+.dark .bg-slate-800 code,
+.dark .bg-black code {
+  color: hsl(var(--foreground));
+}
+
+/* Fix background colors inside other elements */
+.dark div[class*="rounded"] .bg-gray-50,
+.dark div[class*="rounded"] .bg-white,
+.dark div[class*="rounded"] .bg-gray-100 {
+  background-color: hsl(var(--muted));
+}
+
+.dark pre {
+  color: hsl(var(--foreground));
 }

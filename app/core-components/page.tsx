@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { CodeBlock, ContentBox } from "@/components/ui/code-block"
 
 export const metadata: Metadata = {
   title: "Core Components",
@@ -14,7 +15,7 @@ export default function CoreComponentsPage() {
         <h2 className="text-2xl font-semibold mb-4">Layout Components</h2>
         <p className="mb-4">The application uses a nested layout structure to maintain consistent UI elements across routes while allowing for route-specific customization.</p>
         
-        <div className="bg-gray-50 p-4 rounded-lg mb-6">
+        <ContentBox className="mb-6">
           <h3 className="text-xl font-medium mb-2">Root Layout (<code>app/layout.tsx</code>)</h3>
           <p className="mb-3">The root layout serves as the application shell and includes:</p>
           <ul className="list-disc pl-6 mb-3">
@@ -24,7 +25,7 @@ export default function CoreComponentsPage() {
             <li>Toast Container: Global toast notification system</li>
             <li>Metadata Configuration: SEO-related metadata setup</li>
           </ul>
-          <pre className="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto">
+          <CodeBlock>
 {`// Simplified example of root layout
 export default function RootLayout({
   children,
@@ -44,10 +45,10 @@ export default function RootLayout({
     </html>
   );
 }`}
-          </pre>
-        </div>
+          </CodeBlock>
+        </ContentBox>
 
-        <div className="bg-gray-50 p-4 rounded-lg">
+        <ContentBox>
           <h3 className="text-xl font-medium mb-2">Template Layout (<code>app/(template)/layout.tsx</code>)</h3>
           <p className="mb-3">The template layout provides the main application structure and includes:</p>
           <ul className="list-disc pl-6 mb-3">
@@ -56,7 +57,7 @@ export default function RootLayout({
             <li>Error Boundaries: For graceful error handling</li>
             <li>Authentication Check: Verification of user session</li>
           </ul>
-          <pre className="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto">
+          <CodeBlock>
 {`// Simplified example of template layout
 export default function TemplateLayout({ children }) {
   return (
@@ -71,8 +72,8 @@ export default function TemplateLayout({ children }) {
     </div>
   );
 }`}
-          </pre>
-        </div>
+          </CodeBlock>
+        </ContentBox>
       </section>
 
       <section className="mb-12">
@@ -92,7 +93,7 @@ export default function TemplateLayout({ children }) {
             <li>InviteMembers: Team collaboration component</li>
           </ul>
           
-          <pre className="bg-gray-900 text-gray-100 p-3 rounded my-3 text-sm overflow-x-auto">
+          <CodeBlock className="my-3">
 {`// Simplified example of a dashboard component
 export function UpcomingBirthdays() {
   const { loading, errors, fetchData } = useAPI({
@@ -116,7 +117,7 @@ export function UpcomingBirthdays() {
     </Card>
   );
 }`}
-          </pre>
+          </CodeBlock>
         </div>
         
         <div className="mb-6">
@@ -159,7 +160,7 @@ export function UpcomingBirthdays() {
         
         <div className="mb-6">
           <h3 className="text-xl font-medium mb-2">Component Architecture</h3>
-          <pre className="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto mb-3">
+          <CodeBlock className="mb-3">
 {`┌─────────────────────────────────────────────────────────┐
 │                  Feature Components                      │
 │  (Dashboard widgets, Client cards, Invoice tables, etc.) │
@@ -178,7 +179,7 @@ export function UpcomingBirthdays() {
 │                  Primitive Components                    │
 │  (Button, Input, Select, Checkbox, Card, etc.)          │
 └─────────────────────────────────────────────────────────┘`}
-          </pre>
+          </CodeBlock>
         </div>
 
         <div className="mb-6">
@@ -187,19 +188,19 @@ export function UpcomingBirthdays() {
           <div className="mb-4">
             <h4 className="text-lg font-medium mb-1">Button Component (<code>button.tsx</code>)</h4>
             <p className="mb-2">The Button component is a versatile, accessible button primitive with multiple variants:</p>
-            <pre className="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto">
+            <CodeBlock>
 {`// Example Button component usage
 <Button variant="primary" size="md" disabled={isLoading}>
   {isLoading ? <Spinner className="mr-2" /> : null}
   Save Changes
 </Button>`}
-            </pre>
+            </CodeBlock>
           </div>
           
           <div className="mb-4">
             <h4 className="text-lg font-medium mb-1">Input Component (<code>input.tsx</code>)</h4>
             <p className="mb-2">Text input component with validation states:</p>
-            <pre className="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto">
+            <CodeBlock>
 {`// Example Input component usage
 <Input
   label="Email Address"
@@ -210,13 +211,13 @@ export function UpcomingBirthdays() {
   placeholder="you@example.com"
   required
 />`}
-            </pre>
+            </CodeBlock>
           </div>
           
           <div className="mb-4">
             <h4 className="text-lg font-medium mb-1">Select Component (<code>select.tsx</code>)</h4>
             <p className="mb-2">Dropdown selection component with option management:</p>
-            <pre className="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto">
+            <CodeBlock>
 {`// Example Select component usage
 <Select
   label="Status"
@@ -228,13 +229,13 @@ export function UpcomingBirthdays() {
     { value: 'pending', label: 'Pending Approval' },
   ]}
 />`}
-            </pre>
+            </CodeBlock>
           </div>
           
           <div>
             <h4 className="text-lg font-medium mb-1">Dialog Component (<code>dialog.tsx</code>)</h4>
             <p className="mb-2">Modal dialog for focused interactions:</p>
-            <pre className="bg-gray-900 text-gray-100 p-3 rounded text-sm overflow-x-auto">
+            <CodeBlock>
 {`// Example Dialog component usage
 <Dialog
   open={isDialogOpen}
@@ -254,7 +255,7 @@ export function UpcomingBirthdays() {
 >
   {/* Dialog content */}
 </Dialog>`}
-            </pre>
+            </CodeBlock>
           </div>
         </div>
       </section>

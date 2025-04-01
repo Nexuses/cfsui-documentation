@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { GalleryVerticalEnd } from "lucide-react"
+import * as React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { GalleryVerticalEnd } from "lucide-react";
 
-import { SearchBar } from "@/components/search-bar"
-import { useSearchContext } from "@/components/search-provider"
+import { SearchBar } from "@/components/search-bar";
+import { useSearchContext } from "@/components/search-provider";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import {
   Sidebar,
   SidebarContent,
@@ -17,7 +18,13 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-} from "@/components/ui/sidebar"
+  SidebarFooter,
+} from "@/components/ui/sidebar";
+import Logo from "@/public/Continental-logo-light-mode.png";
+import Logo2 from "@/public/Continental-logo-dark-mode.png";
+import NexLogoLight from "@/public/Nexuses-logo-lightmode.png";
+import NexLogoDark from "@/public/Nexuses-logo-darkmode.png";
+import Image from "next/image";
 
 const navItems = [
   { title: "Introduction", url: "/" },
@@ -28,18 +35,22 @@ const navItems = [
   { title: "State Management", url: "/state-management" },
   { title: "Custom Hooks", url: "/custom-hooks" },
   { title: "API Integration", url: "/api-integration" },
-  { title: "Authentication & Authorization", url: "/authentication-authorization" },
+  {
+    title: "Authentication & Authorization",
+    url: "/authentication-authorization",
+  },
   { title: "Routing Structure", url: "/routing-structure" },
   { title: "Environment Configuration", url: "/environment-configuration" },
   { title: "Extending the Application", url: "/extending-the-application" },
-]
+];
 
 export function AppSidebar() {
-  const pathname = usePathname()
-  const { navItems: contentNavItems, isLoading } = useSearchContext()
-  
+  const pathname = usePathname();
+  const { navItems: contentNavItems, isLoading } = useSearchContext();
+
   // Use contentNavItems from context if available, otherwise fall back to static navItems
-  const searchNavItems = contentNavItems.length > 0 ? contentNavItems : navItems;
+  const searchNavItems =
+    contentNavItems.length > 0 ? contentNavItems : navItems;
 
   return (
     <Sidebar>
@@ -48,12 +59,21 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <GalleryVerticalEnd className="size-4" />
+                <div className="dark:hidden">
+                  <Image
+                    src={Logo}
+                    alt="Continental Logo"
+                    width={200}
+                    height={200}
+                  />
                 </div>
-                <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">CFS UI</span>
-                  <span className="">Docs</span>
+                <div className="hidden dark:block">
+                  <Image
+                    src={Logo2}
+                    alt="Continental Logo Dark"
+                    width={200}
+                    height={200}
+                  />
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -61,8 +81,8 @@ export function AppSidebar() {
         </SidebarMenu>
         <SidebarGroup className="py-0">
           <SidebarGroupContent className="relative">
-            <SearchBar 
-              navItems={searchNavItems} 
+            <SearchBar
+              navItems={searchNavItems}
               placeholder="Search the docs..."
               className="w-full"
             />
@@ -85,7 +105,23 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter className="border-t p-4">
+        <div className="flex items-center justify-between">
+          {/* <span className="text-xs text-muted-foreground">Toggle theme</span> */}
+          <div className="dark:hidden">
+            <Image src={NexLogoLight} alt="Nexuses Logo" width={100} height={100} />
+          </div>
+          <div className="hidden dark:block">
+            <Image
+              src={NexLogoDark}
+              alt="Nexuses Logo Dark"
+              width={100}
+              height={100}
+            />
+          </div>
+          <ThemeToggle />
+        </div>
+      </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
-

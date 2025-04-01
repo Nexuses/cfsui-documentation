@@ -3,6 +3,7 @@ import { Inter } from "next/font/google"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { SearchProvider } from "@/components/search-provider"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -20,13 +21,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
-        <SearchProvider>
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarTrigger className="ml-3 mt-3" />
-            <main className="flex-1 overflow-auto p-8 pt-16">{children}</main>
-          </SidebarProvider>
-        </SearchProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <SearchProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <SidebarTrigger className="ml-3 mt-3" />
+              <main className="flex-1 overflow-auto p-8 pt-16">{children}</main>
+            </SidebarProvider>
+          </SearchProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
